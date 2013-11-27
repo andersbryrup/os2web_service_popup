@@ -33,12 +33,12 @@
             // User has become idle. Show them a popup. :-)
 
             // TODO some fancy show... SlideIn etc.
-            $('#os2web_service_popup').fadeIn(300);
+            $('#os2web_service_popup').fadeIn(Drupal.settings.os2web_service_popup.fadein);
           });
-          $( document ).bind( "active.idleTimer", function(){
+          $('#os2web_service_popup').on('click', function(){
             setTimeout(function(){
-              $('#os2web_service_popup').fadeOut(300);
-            },1000);
+              $('#os2web_service_popup').fadeOut(Drupal.settings.os2web_service_popup.fadeout);
+            },100);
           });
         }
       }

@@ -36,6 +36,18 @@ function os2web_service_popup_form_os2web_settings_settings_form_alter(&$form, &
     '#default_value' => variable_get('os2web_service_popup_clock_stop', '16:00'),
     '#element_validate' => array('os2web_service_popup_form_validate_field'),
   );
+  $form['os2web_service_popup_config_group']['os2web_service_popup_fadein'] = array(
+    '#type' => 'textfield',
+    '#title' => 'PopUp Fadein time',
+    '#default_value' => variable_get('os2web_service_popup_fadein', '300'),
+    '#element_validate' => array('element_validate_integer_positive'),
+  );
+  $form['os2web_service_popup_config_group']['os2web_service_popup_fadeout'] = array(
+    '#type' => 'textfield',
+    '#title' => 'PopUp Fadeout time',
+    '#default_value' => variable_get('os2web_service_popup_fadeout', '300'),
+    '#element_validate' => array('element_validate_integer_positive'),
+  );
   return $form;
 }
 
@@ -62,6 +74,8 @@ function os2web_service_popup_preprocess_page(&$vars, $hook) {
     $idle_time = variable_get('os2web_service_popup_min_idle_time', 300000);
     $clock_start = variable_get('os2web_service_popup_clock_start', '08:00');
     $clock_stop = variable_get('os2web_service_popup_clock_stop', '16:00');
+    $fadein_time = variable_get('os2web_service_popup_fadein', 300);
+    $fadeout_time = variable_get('os2web_service_popup_fadeout', 300);
 
     if ($node && !empty($node->title) && !empty($node->body) && $idle_time > -1 )  {
       // Add settings and javascript to the page. Javascript takes care of the
@@ -75,6 +89,8 @@ function os2web_service_popup_preprocess_page(&$vars, $hook) {
         'idle_time' => $idle_time,
         'clock_start' => $clock_start,
         'clock_stop' => $clock_stop,
+        'fadein' => $clock_stop,
+        'fadeout' => $clock_stop,
       )), 'setting');
 
       drupal_add_js(drupal_get_path('module', 'os2web_service_popup') .'/js/os2web_service_popup.js');
