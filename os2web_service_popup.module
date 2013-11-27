@@ -89,8 +89,8 @@ function os2web_service_popup_preprocess_page(&$vars, $hook) {
         'idle_time' => $idle_time,
         'clock_start' => $clock_start,
         'clock_stop' => $clock_stop,
-        'fadein' => $clock_stop,
-        'fadeout' => $clock_stop,
+        'fadein' => $fadein_time,
+        'fadeout' => $fadeout_time,
       )), 'setting');
 
       drupal_add_js(drupal_get_path('module', 'os2web_service_popup') .'/js/os2web_service_popup.js');
