@@ -35,7 +35,7 @@
             // TODO some fancy show... SlideIn etc.
             $('#os2web_service_popup').fadeIn(Drupal.settings.os2web_service_popup.fadein);
           });
-          $('#os2web_service_popup').on('click', function(){
+          $('#os2web_service_popup').click(function(){
             setTimeout(function(){
               $('#os2web_service_popup').fadeOut(Drupal.settings.os2web_service_popup.fadeout);
             },100);
